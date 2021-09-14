@@ -24,8 +24,8 @@ stages{
 
     stage('copy/deploy artifacts to server'){
         steps{
-            sshagent(['ec2-user']) {
-                sh 'scp -o StrictHostKeyChecking=no */target/*.war ec2-user@13.126.172.48:/var/lib/tomcat/webapps' // some block
+            sshagent(['tomcat-user']) {
+                sh 'scp -o StrictHostKeyChecking=no */target/*.war tomcat-user@192.168.56.102:/var/lib/tomcat/webapps' // some block
             }
         }
     }
