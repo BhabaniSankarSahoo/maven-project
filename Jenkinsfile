@@ -32,9 +32,7 @@ stages{
 }
 post{
     always{
-        mail to: 'bhabani.sankar.sahoo@hotmail.com',
-        subject: "Status of pipeline: ${currentBuild.fullDisplayName}"
-        body: "${env.BUILD_URL} has result ${currentBuild.result}"
+        mail bcc: '', body: '', cc: '', from: '', replyTo: 'dcs', subject: 'abc', to: 'bhabani.sankar.sahoo@hotmail.com'
     }
 }
 
