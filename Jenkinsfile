@@ -25,14 +25,14 @@ stages{
     stage('copy/deploy artifacts to server'){
         steps{
             sshagent(['ec2-user']) {
-                sh 'scp -o StrictHostKeyChecking=no **/*.war ec2-user@13.126.172.48:/var/lib/tomcat/webapps' // some block
+                sh 'scp -o StrictHostKeyChecking=no */target/*.war ec2-user@13.126.172.48:/var/lib/tomcat/webapps' // some block
             }
         }
     }
 }
 post{
     always{
-        mail bcc: '', body: '', cc: '', from: '', replyTo: 'dcs', subject: 'abc', to: 'bhabani.sankar.sahoo@hotmail.com'
+        mail bcc: '', body: 'dddd', cc: '', from: '', replyTo: 'dcs', subject: 'abc', to: 'bhabani.sankar.sahoo@hotmail.com'
     }
 }
 
