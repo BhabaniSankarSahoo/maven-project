@@ -3,13 +3,13 @@ pipeline{
     agent any
 stages{
     stage('SCM checkout'){
-        step{
+        steps{
             git branch: 'master', url: 'https://github.com/BhabaniSankarSahoo/maven-project.git'
         }
     }
 
     stage('code build'){
-        step{
+        steps{
             withMaven(jdk: 'local_jdk', maven: 'local_maven') {
                 sh 'mvn clean package'                              // some block
             }
@@ -17,13 +17,13 @@ stages{
     }
 
     stage('archive the arifacts'){
-        step{
+        steps{
             archiveArtifacts artifacts: '**/*.war', followSymlinks: false
         }
     }
 
     stage('copy/deploy artifacts to server'){
-        step{
+        steps{
             sshagent(['ec2-user']) {
                 sh 'ssh -o StrictHostKeyChecking=no **/*.war ec2-user@13.126.172.48:/var/lib/tomcat/webapps' // some block
             }
